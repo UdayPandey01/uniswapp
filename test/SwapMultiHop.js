@@ -30,7 +30,7 @@ describe("SwapMultiHop", async() => {
         await weth.deposit({value: amountIn});
         await weth.approve(swapMultiHop.target, amountIn);
 
-        await swapMultiHop.swapExactInputSingle(amountIn)
+        await swapMultiHop.swapExactInputMultiHop(amountIn)
         console.log("DAI balance", await dai.balanceOf(accounts[0].address));
     })
 
@@ -43,7 +43,7 @@ describe("SwapMultiHop", async() => {
         console.log(`Previous WETH balance : ${await weth.balanceOf(accounts[1].address)}`);
 
         //SWAP
-        await swapMultiHop.connect(accounts[1]).swapExactOutputSingle(daiAmountOut, wethAmountInMAx);
+        await swapMultiHop.connect(accounts[1]).swapExactOutputMultiHop(daiAmountOut, wethAmountInMAx);
         console.log(`DAI BALANCE : ${await dai.balanceOf(accounts[1].address)}`);
         console.log(`Remaining WETH balance : ${await weth.balanceOf(accounts[1].address)}`);
     })
