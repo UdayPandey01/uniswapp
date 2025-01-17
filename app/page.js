@@ -1,9 +1,11 @@
-import { HeroSection } from "@/components";
-
-export default function Home() {
+import React from 'react'
+import { HeroSection } from '@/components/index';
+const Home = () => {
   return (
     <div>
-      <HeroSection accounts="Hey" tokenData="DATA" />
+      <HeroSection accounts="hey" tokenData="Data" />
     </div>
-  );
+  )
 }
+
+export default Home;
