@@ -11,10 +11,14 @@ async function main() {
     await lifeToken.waitForDeployment();
     console.log("LifeToken deployed to:", lifeToken.target);
 
-    const SingleSwapToken = await hre.ethers.getContractFactory("SingleSwapToken");
-    const singleSwapToken = await SingleSwapToken.deploy();
-    await singleSwapToken.waitForDeployment();
-    console.log("SingleSwapToken deployed to:", singleSwapToken.target);
+    const SingleSwapToken = await hre.ethers.deployContract("SingleSwapToken", []);
+    const singleSwapToken = await SingleSwapToken.waitForDeployment();
+    try {
+        console.log(`Single_Swap deployed to ${singleSwapToken.target}`);
+    } catch (error) {
+        console.error("Error in deploying SingleSwap:", error);
+        throw error;
+    }
 
     const SwapMultiHop = await hre.ethers.getContractFactory("SwapMultiHop");
     const swapMultiHop = await SwapMultiHop.deploy();
