@@ -24,6 +24,16 @@ async function main() {
     const swapMultiHop = await SwapMultiHop.deploy();
     await swapMultiHop.waitForDeployment();
     console.log("SwapMultiHop deployed to:", swapMultiHop.target);
+
+    const DaiToken = await hre.ethers.getContractFactory("DaiToken");
+    const daiToken = await DaiToken.deploy();
+    await daiToken.waitForDeployment();
+    console.log("DaiToken deployed to:", daiToken.target);
+
+    const WethToken = await hre.ethers.getContractFactory("WethToken");
+    const wethToken = await WethToken.deploy();
+    await wethToken.waitForDeployment();
+    console.log("WethToken deployed to:", wethToken.target);
 }
 
 main().catch((error) =>{
