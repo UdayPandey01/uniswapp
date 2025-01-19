@@ -1,14 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaEthereum } from "react-icons/fa";
 import { IoSettingsSharp } from "react-icons/io5";
 import { Token, SearchToken } from "@/components/index";
+import { SwapTokenContext } from "@/context/SwapContext";
 
-const HeroSection = ({ accounts, tokenData }) => {
+const HeroSection = ({ tokenData }) => {
   const [openSetting, setOpenSetting] = useState(false);
   const [openToken, setOpenToken] = useState(false);
   const [openTokenTwo, setOpenTokenTwo] = useState(false);
+
+  const {singleSwapToken, connectWallet, account} = useContext(SwapTokenContext);
 
   const [tokenOne, setTokenOne] = useState({
     name: "",
@@ -61,10 +64,10 @@ const HeroSection = ({ accounts, tokenData }) => {
           </div>
         </div>
 
-        {accounts ? (
-          <button className="w-full py-2 bg-blue-500/15 text-gray-500 font-semibold rounded hover:bg-blue-600/20">Connect Wallet</button>
+        {account ? (
+          <button onClick={() => singleSwapToken()} className="w-full py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Swap</button>
         ) : (
-          <button onClick={() => {}} className="w-full py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Swap</button>
+          <button onClick={() => connectWallet()} className="w-full py-2 bg-blue-500/15 text-gray-500 font-semibold rounded hover:bg-blue-600/20">Connect Wallet</button>
         )}
       </div>
 

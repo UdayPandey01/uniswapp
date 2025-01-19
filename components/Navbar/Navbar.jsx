@@ -2,13 +2,15 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { FaEthereum } from "react-icons/fa";
 import { Model, TokenList } from "..";
+import { SwapTokenContext } from "@/context/SwapContext";
 const logo = require("@/assests/logo.png");
 
 const Navbar = () => {
+  const {ether, account, networkConnected, connectWallet, tokenData} = useContext(SwapTokenContext);
   const menuItems = [
     {
       name: "Swap",
@@ -26,7 +28,13 @@ const Navbar = () => {
 
   const [openModel, setOpenModel] = useState(false);
   const [openTokenBox, setOpenTokenBox] = useState(false);
-  const [accounts, setAccounts] = useState(false);
+  // const [accounts, setAccounts] = useState(false);
+
+  // console.log(tokenData)
+
+  const trimAccount = (account) => {
+    return `${account.slice(0, 4)}...${account.slice(-4)}`;
+  };
 
   return (
     <div>
@@ -41,7 +49,7 @@ const Navbar = () => {
                 key={index + 1}
                 href={{ pathname: `${el.name}`, query: `${el.link}` }}
               >
-                <p className="flex flex-row items-center gap-2 space-x-1 border border-gray-300 p-2 rounded-3xl ">
+                <p className="flex flex-row items-center shadow-lg gap-2 space-x-1 border border-gray-300 p-2 rounded-3xl transition-transform transform hover:scale-105 hover:shadow-lg">
                   {el.name}
                 </p>
               </Link>
@@ -61,35 +69,35 @@ const Navbar = () => {
           </div>
         </div>
         <div className="flex flex-row items-center gap-12 text-lg font-semibold">
-          <div className="flex flex-row items-center gap-2 space-x-1 border border-gray-300 p-2 rounded-3xl ">
+          <div className="flex flex-row items-center gap-1 shadow-lg space-x-1 border border-gray-300 p-2 rounded-3xl transition-transform transform hover:scale-105 hover:shadow-lg">
             <div>
               <FaEthereum />
             </div>
-            <p>Network Name</p>
+            <p>{networkConnected}</p>
           </div>
-          {accounts ? (
+          {account ? (
             <button
-              onClick={() => setOpenModel(true)}
-              className="flex flex-row items-center gap-2 space-x-1 border border-gray-300 p-2 rounded-3xl "
+              onClick={() => setOpenTokenBox(true)}
+              className="flex flex-row items-center gap-2 space-x-1 shadow-lg border border-gray-300 p-2 rounded-3xl transition-transform transform hover:scale-105 hover:shadow-lg"
             >
-              Connect
+              {trimAccount(account)}
             </button>
           ) : (
             <button
-              onClick={() => setOpenTokenBox(true)}
-              className="flex flex-row items-center gap-2 space-x-1 border border-gray-300 p-2 rounded-3xl "
+              onClick={() => setOpenModel(true)}
+              className="flex flex-row items-center gap-2 space-x-1 shadow-lg border border-gray-300 p-2 rounded-3xl transition-transform transform hover:scale-105 hover:shadow-lg"
             >
-              0xhssssdkidkisi...
+              Connect
             </button>
           )}
 
           {openModel && (
-            <Model setOpenModel={setOpenModel} connectWallet="Connect" />
+            <Model setOpenModel={setOpenModel} connectWallet={connectWallet} />
           )}
         </div>
       </div>
       {openTokenBox && (
-        <TokenList setOpenTokenBox={setOpenTokenBox} tokenDate="hey" />
+        <TokenList setOpenTokenBox={setOpenTokenBox} tokenData={tokenData} />
       )}
     </div>
   );
