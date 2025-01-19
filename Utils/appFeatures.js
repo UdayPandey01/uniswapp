@@ -8,8 +8,9 @@ import {
   LifeTokenAbi,
   SingleSwapTokenAddress,
   SingleSwapTokenAbi,
-  IWETHAddress,
-  IWETHAbi,
+  WETHAbi,
+  DAIAbi,
+  ERC20ABI,
 } from "@/context/constants";
 
 export const checkIfWalletIsConnected = async () => {
@@ -104,8 +105,9 @@ export const connectingToLifeToken = async () => {
   }
 };
 
+const WETHAddress = "0xf4dB42018d7B439258c2529418Db8E08A11AE559"
 export const fetchIWETHContract = async (signerOrProvider) =>
-  new ethers.Contract(IWETHAddress, IWETHAbi, signerOrProvider);
+  new ethers.Contract(WETHAddress, WETHAbi, signerOrProvider);
 
 export const connectingToIWETHToken = async () => {
   try {
@@ -120,16 +122,17 @@ export const connectingToIWETHToken = async () => {
   }
 };
 
-const DAIAddress = "0x6B175474E89094C44Da98b954EedeAC495271d0F";
+const DAIAddress = "0xF49f5bc0C11a4c2b77E01767779307e3a683fFF9";
 export const fetchDAIContract = async (signerOrProvider) =>
-  new ethers.Contract(DAIAddress, IWETHAbi, signerOrProvider);
+  new ethers.Contract(DAIAddress, DAIAbi, signerOrProvider);
 
 export const connectingToDAIToken = async () => {
   try {
     const web3Modal = new Web3Modal();
     const connection = await web3Modal.connect();
     const provider = new ethers.BrowserProvider(connection);
-    const signer = provider.getSigner();
+    // console.log("Provider: ", provider);
+    const signer = await provider.getSigner();
     const contract = fetchDAIContract(signer);
     return contract;
   } catch (error) {
