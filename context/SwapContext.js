@@ -32,8 +32,8 @@ export const SwapTokenContextProvider = ({ children }) => {
 
   const addToken = [
     // "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
-    "0x1EFC0069D5BAbEF06a89d235D85485835dF2966C",
-    "0x1ec26635096fd7E3B7f27Ff8D76E1518a134b478",
+    "0x011053718683C5968AC4B0Ce04589a46A6E244F3",
+    "0x5eB61c100793dA9805993f67c78613bA1548829d",
   ];
 
   const fetchingData = async () => {
@@ -129,15 +129,17 @@ export const SwapTokenContextProvider = ({ children }) => {
         dai = await connectingToDAIToken()
         console.log("DAI",dai)
 
-        const amountIn = 10n ** 18n
+        const amountIn = 10n ** 13n
 
-        await weth.deposit({value: amountIn})
+        await weth.deposit({value: amountIn, gasLimit: 300000})
         await weth.approve(singleSwapToken.target, amountIn)
-
+        console.log("2222")
+        console.log("AmountIn: ",amountIn)
+        console.log(singleSwapToken)
         await singleSwapToken.swapExactInputSingle(amountIn,{
-            gasLimit: 3000000,
+            gasLimit: 300000,
         })
-
+        console.log("3333")
         const balance = await dai.balanceOf(account)
         const transferAmount = BigNumber.from(balance).toString()
         const ethValue = ethers.utils.formatEther(transferAmount)

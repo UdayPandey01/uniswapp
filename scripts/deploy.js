@@ -34,6 +34,11 @@ async function main() {
     const wethToken = await WethToken.deploy();
     await wethToken.waitForDeployment();
     console.log("WethToken deployed to:", wethToken.target);
+
+    const WrappedEther = await hre.ethers.getContractFactory("WrappedEther");
+    const wrappedEther = await WrappedEther.deploy();
+    await wrappedEther.waitForDeployment();
+    console.log("WrappedEther deployed to:", wrappedEther.target);
 }
 
 main().catch((error) =>{

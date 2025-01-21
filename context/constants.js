@@ -4,25 +4,26 @@ import singleSwapToken from "./SingleSwapToken.json";
 import swapMultiHop from "./SwapMultiHop.json";
 // import IWETH from "./IWETH.json";
 import ERC20 from "./ERC20.json";
-import WETH from "./WethToken.json";
+import wrappedEther from "./WrappedEther.json";
 import DAI from "./DaiToken.json";
 
-export const BooTokenAddress = "0x1EFC0069D5BAbEF06a89d235D85485835dF2966C";
+export const BooTokenAddress = "0x011053718683C5968AC4B0Ce04589a46A6E244F3";
 export const BooTokenAbi = booToken.abi;
 
-export const LifeTokenAddress = "0x1ec26635096fd7E3B7f27Ff8D76E1518a134b478"
+export const LifeTokenAddress = "0x5eB61c100793dA9805993f67c78613bA1548829d";
 export const LifeTokenAbi = lifeToken.abi;
 
-export const SingleSwapTokenAddress = "0xFF899d024791593802e39b05DDBAD7ea36ad9612"
+export const SingleSwapTokenAddress =
+  "0xA4C0B0B9E6205aA999f57C9bD3935d29eB0e5bED";
 export const SingleSwapTokenAbi = singleSwapToken.abi;
 
-export const SwapMultiHopAddress = "0x54d3eDd746B34285a2A2ad48C174D855CbbA0b9B"
+export const SwapMultiHopAddress = "0xF698Be49Fc2eA075246bBe89f167e8657511b5CE";
 export const SwapMultiHopAbi = swapMultiHop.abi;
 
-export const WETHAddress = "0xf4dB42018d7B439258c2529418Db8E08A11AE559"
-export const WETHAbi = WETH.abi;
+export const WETHAddress = "0xFb254E660dbeda9a9d790A35734DF119A9cF0c33";
+export const WrappedEtherAbi = wrappedEther.abi;
 
-export const DAIAddress = "0xF49f5bc0C11a4c2b77E01767779307e3a683fFF9"
+export const DAIAddress = "0x13405Dc7D9F3d253f31B6a32315FFBe08909ae8c";
 export const DAIAbi = DAI.abi;
 
 export const ERC20ABI = ERC20.abi;
