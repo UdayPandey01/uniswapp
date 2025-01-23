@@ -106,7 +106,7 @@ export const connectingToLifeToken = async () => {
   }
 };
 
-const WETHAddress = "0x99C8900F5577f4E662F3e2C6785Af626d98796B5"
+const WETHAddress = "0xD15CF240Fcb625609230B558A25EddA254af288C"
 export const fetchIWETHContract = async (signerOrProvider) =>
   new ethers.Contract(WETHAddress, WrappedEtherAbi, signerOrProvider);
 
@@ -123,7 +123,7 @@ export const connectingToIWETHToken = async () => {
   }
 };
 
-const DAIAddress = "0xF49f5bc0C11a4c2b77E01767779307e3a683fFF9";
+const DAIAddress = "0xD0D3d55f80fa1f4251bb92063bb873aD1d84292b";
 export const fetchDAIContract = async (signerOrProvider) =>
   new ethers.Contract(DAIAddress, DAIAbi, signerOrProvider);
 

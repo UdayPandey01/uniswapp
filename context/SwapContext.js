@@ -1,6 +1,6 @@
 "use client";
 
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ethers, BigNumber } from "ethers";
 import Web3Modal from "web3modal";
 
@@ -32,8 +32,8 @@ export const SwapTokenContextProvider = ({ children }) => {
 
   const addToken = [
     // "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
-    "0x011053718683C5968AC4B0Ce04589a46A6E244F3",
-    "0x5eB61c100793dA9805993f67c78613bA1548829d",
+    "0xb8C35a52ADB02032D2A0Db736aeB639E7C30E79c",
+    "0xEd90a1423C79A472b31E34D8aCf7c2109213ceDC",
   ];
 
   const fetchingData = async () => {
@@ -141,8 +141,8 @@ export const SwapTokenContextProvider = ({ children }) => {
         })
         console.log("3333")
         const balance = await dai.balanceOf(account)
-        const transferAmount = BigNumber.from(balance).toString()
-        const ethValue = ethers.utils.formatEther(transferAmount)
+        const transferAmount = BigInt(balance).toString()
+        const ethValue = ethers.formatEther(transferAmount)
         setDai(ethValue)
 
         console.log("DAI Balance: ",ethValue)

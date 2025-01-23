@@ -11,7 +11,7 @@ const HeroSection = ({ tokenData }) => {
   const [openToken, setOpenToken] = useState(false);
   const [openTokenTwo, setOpenTokenTwo] = useState(false);
 
-  const {singleSwapToken, connectWallet, account} = useContext(SwapTokenContext);
+  const {singleSwapToken, connectWallet, account, weth9, dai, ether} = useContext(SwapTokenContext);
 
   const [tokenOne, setTokenOne] = useState({
     name: "",
@@ -43,7 +43,7 @@ const HeroSection = ({ tokenData }) => {
               <button onClick={() => setOpenToken(true)} className="flex items-center space-x-1 border border-gray-300 p-2 rounded-3xl hover:bg-gray-200/80">
                 <FaEthereum />
                 <span className="font-medium ">{tokenOne.name || "ETH"}</span>
-                <small>9474</small>
+                <small>{ether.slice(0,6)}</small>
               </button>
             </div>
           </div>
@@ -58,7 +58,7 @@ const HeroSection = ({ tokenData }) => {
               <button onClick={() => setOpenTokenTwo(true)} className="flex items-center space-x-1 border border-gray-300 p-2 rounded-3xl hover:bg-gray-200/80">
                 <FaEthereum />
                 <span className="font-medium" >{tokenTwo.name || "ETH"}</span>
-                <small>9474</small>
+                <small>{dai.slice(0,6)}</small>
               </button>
             </div>
           </div>
